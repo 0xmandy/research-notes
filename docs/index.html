@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>古茗：加盟主导型茶饮连锁研究笔记</title>
+  <meta name="description" content="一页看懂古茗的加盟商业模式、门店扩张、单店模型、现金流质量和主要风险。">
+  <style>
+    :root {
+      --paper: #fbfcf8;
+      --ink: #17201d;
+      --muted: #65716c;
+      --line: #d9e1dc;
+      --panel: #ffffff;
+      --green: #1e7d5a;
+      --green-deep: #0f4f3b;
+      --coral: #d45c42;
+      --blue: #3d6f93;
+      --yellow: #d7a72f;
+      --wash: #eef5f0;
+      --shadow: 0 18px 45px rgba(23, 32, 29, 0.08);
+      --sans: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(30, 125, 90, 0.10), transparent 32%),
+        linear-gradient(225deg, rgba(61, 111, 147, 0.09), transparent 28%),
+        var(--paper);
+      font-family: var(--sans);
+      line-height: 1.72;
+    }
+
+    a {
+      color: var(--green-deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(15, 79, 59, 0.25);
+    }
+
+    a:hover {
+      border-bottom-color: var(--green-deep);
+    }
+
+    .page {
+      min-height: 100vh;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-bottom: 1px solid rgba(217, 225, 220, 0.85);
+      background: rgba(251, 252, 248, 0.88);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 13px 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 700;
+    }
+
+    .brand-mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background:
+        linear-gradient(145deg, var(--green), var(--green-deep) 70%),
+        var(--green);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+      flex: 0 0 auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 14px;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      border-bottom: none;
+    }
+
+    .share-btn {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--ink);
+      border-radius: 7px;
+      padding: 7px 11px;
+      font: inherit;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .share-btn:hover {
+      border-color: var(--green);
+      color: var(--green-deep);
+    }
+
+    .hero {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 72px 24px 44px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 44px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 18px;
+      color: var(--green-deep);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: var(--green);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-family: var(--serif);
+      font-size: clamp(42px, 7vw, 86px);
+      line-height: 1.02;
+      font-weight: 800;
+    }
+
+    .hero-copy {
+      max-width: 680px;
+      margin-top: 24px;
+      color: #33413b;
+      font-size: 19px;
+    }
+
+    .hero-note {
+      display: inline-block;
+      margin-top: 22px;
+      border-left: 4px solid var(--coral);
+      padding: 8px 0 8px 14px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .scoreboard {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .metric {
+      min-height: 132px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.86);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .metric strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: var(--serif);
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1;
+      color: var(--green-deep);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .section {
+      padding: 48px 24px;
+    }
+
+    .section:nth-of-type(even) {
+      background: rgba(238, 245, 240, 0.68);
+      border-top: 1px solid rgba(217, 225, 220, 0.72);
+      border-bottom: 1px solid rgba(217, 225, 220, 0.72);
+    }
+
+    .wrap {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 48px);
+      line-height: 1.15;
+    }
+
+    .section-title p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .thesis-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .thesis {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 20px;
+    }
+
+    .thesis b {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 18px;
+    }
+
+    .thesis p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .chart {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 20px;
+      overflow: hidden;
+    }
+
+    .chart h3 {
+      margin: 0 0 4px;
+      font-size: 18px;
+    }
+
+    .chart .unit {
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .bars {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bar-row {
+      display: grid;
+      grid-template-columns: 84px minmax(0, 1fr) 92px;
+      gap: 10px;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .track {
+      height: 12px;
+      border-radius: 6px;
+      background: #e9efeb;
+      overflow: hidden;
+    }
+
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--green);
+    }
+
+    .fill.blue {
+      background: var(--blue);
+    }
+
+    .fill.coral {
+      background: var(--coral);
+    }
+
+    .fill.yellow {
+      background: var(--yellow);
+    }
+
+    .value {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .reading-block {
+      border-left: 5px solid var(--green);
+      padding: 2px 0 2px 22px;
+    }
+
+    .reading-block p {
+      margin: 0 0 14px;
+      color: #27342f;
+    }
+
+    .evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      font-size: 14px;
+    }
+
+    .evidence-table th,
+    .evidence-table td {
+      padding: 12px 13px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .evidence-table th {
+      background: #edf5f1;
+      color: var(--green-deep);
+      font-weight: 700;
+    }
+
+    .evidence-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .warn {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .risk {
+      border-radius: 8px;
+      padding: 18px;
+      color: #2a211e;
+      background: #fff7f0;
+      border: 1px solid #efd7c9;
+    }
+
+    .risk b {
+      color: #8a3524;
+    }
+
+    .appendix {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 320px;
+      gap: 20px;
+    }
+
+    .source-list {
+      margin: 0;
+      padding-left: 20px;
+      color: var(--muted);
+    }
+
+    .source-list li {
+      margin-bottom: 8px;
+    }
+
+    .aside {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 34px 24px 48px;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 30;
+      display: none;
+      max-width: 280px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      padding: 12px 14px;
+      box-shadow: var(--shadow);
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    .toast.show {
+      display: block;
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .two-col,
+      .appendix {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 46px;
+      }
+
+      .scoreboard,
+      .thesis-grid,
+      .chart-grid,
+      .warn {
+        grid-template-columns: 1fr;
+      }
+
+      .section-title {
+        align-items: start;
+        flex-direction: column;
+      }
+    }
+
+    @media print {
+      .nav,
+      .share-btn,
+      .toast {
+        display: none;
+      }
+
+      body {
+        background: #fff;
+      }
+
+      .section {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <nav class="nav" aria-label="页面导航">
+      <div class="nav-inner">
+        <div class="brand">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span>古茗研究笔记</span>
+        </div>
+        <div class="nav-links">
+          <a href="#model">商业模式</a>
+          <a href="#charts">关键数据</a>
+          <a href="#risks">风险</a>
+          <a href="#appendix">来源</a>
+          <button class="share-btn" type="button" id="shareBtn">复制分享信息</button>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <div class="eyebrow">1364.HK · 招股书研究</div>
+        <h1>古茗不是直营茶饮股，而是加盟供应链公司</h1>
+        <p class="hero-copy">
+          这份网页把古茗招股书中的经营数据压缩成一页：先看加盟结构，再看成熟加盟店质量、单店模型、现金流和风险。核心目的不是给买卖建议，而是判断这是不是一门值得继续跟踪的消费连锁生意。
+        </p>
+        <div class="hero-note">资料截至 2024-09-30，主要来源为古茗全球发售招股书。所有金额总量字段统一使用人民币亿元，单店指标保留业务单位。</div>
+      </div>
+      <div class="scoreboard" aria-label="关键指标">
+        <div class="metric">
+          <strong>99.9%</strong>
+          <span>加盟店 GMV 贡献占比，直营不是增长主引擎</span>
+        </div>
+        <div class="metric">
+          <strong>7</strong>
+          <span>截至 2024-09-30 的直营门店数</span>
+        </div>
+        <div class="metric">
+          <strong>2.9</strong>
+          <span>成熟加盟商平均经营门店数</span>
+        </div>
+        <div class="metric">
+          <strong>-0.7%</strong>
+          <span>2024 前三季度同店 GMV 增长转负</span>
+        </div>
+      </div>
+    </header>
+
+    <section class="section" id="model">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>先判断它是什么生意</h2>
+          <p>古茗的研究入口不是直营店租金、人工和翻台率，而是加盟体系能否持续复制、成熟门店能否沉淀、总部供应链能否承接扩张。</p>
+        </div>
+        <div class="thesis-grid">
+          <article class="thesis">
+            <b>加盟主导</b>
+            <p>加盟店贡献约 99.9% GMV，直营门店仅 7 家。它更像总部赋能加盟体系的消费连锁，而不是直营零售。</p>
+          </article>
+          <article class="thesis">
+            <b>成熟店更强</b>
+            <p>2024 前三季度，现有加盟店单店日均 GMV 为 6.6，新开加盟店为 5.2，成熟门店有明显沉淀效应。</p>
+          </article>
+          <article class="thesis">
+            <b>压力已出现</b>
+            <p>同店 GMV 转负，新开店放缓，闭店增加，销售费用率上升。问题不是财务崩坏，而是经营效率边际承压。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="charts">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>关键数据</h2>
+          <p>这里保留朋友最容易看懂的四组图：门店规模、扩张质量、同店变化、现金流。完整 11 问见附录文件。</p>
+        </div>
+        <div class="chart-grid">
+          <article class="chart">
+            <h3>期末门店数</h3>
+            <p class="unit">单位：家</p>
+            <div class="bars">
+              <div class="bar-row"><span>2021</span><div class="track"><div class="fill" style="width:58.2%"></div></div><span class="value">5,694</span></div>
+              <div class="bar-row"><span>2022</span><div class="track"><div class="fill" style="width:68.2%"></div></div><span class="value">6,669</span></div>
+              <div class="bar-row"><span>2023</span><div class="track"><div class="fill" style="width:92.1%"></div></div><span class="value">9,001</span></div>
+              <div class="bar-row"><span>2024-09</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="value">9,778</span></div>
+            </div>
+          </article>
+
+          <article class="chart">
+            <h3>新开店与闭店</h3>
+            <p class="unit">单位：家；绿色为新开，红色为闭店</p>
+            <div class="bars">
+              <div class="bar-row"><span>2021 新开</span><div class="track"><div class="fill" style="width:69.6%"></div></div><span class="value">1,808</span></div>
+              <div class="bar-row"><span>2021 闭店</span><div class="track"><div class="fill coral" style="width:7.9%"></div></div><span class="value">205</span></div>
+              <div class="bar-row"><span>2023 新开</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="value">2,597</span></div>
+              <div class="bar-row"><span>2024 闭店</span><div class="track"><div class="fill coral" style="width:17.0%"></div></div><span class="value">441</span></div>
+            </div>
+          </article>
+
+          <article class="chart">
+            <h3>同店 GMV 增长</h3>
+            <p class="unit">单位：%；2024 前三季度已经转负</p>
+            <div class="bars">
+              <div class="bar-row"><span>2021</span><div class="track"><div class="fill blue" style="width:100%"></div></div><span class="value">12.0%</span></div>
+              <div class="bar-row"><span>2022</span><div class="track"><div class="fill blue" style="width:23.3%"></div></div><span class="value">2.8%</span></div>
+              <div class="bar-row"><span>2023</span><div class="track"><div class="fill blue" style="width:78.3%"></div></div><span class="value">9.4%</span></div>
+              <div class="bar-row"><span>2024-09</span><div class="track"><div class="fill coral" style="width:6%"></div></div><span class="value">-0.7%</span></div>
+            </div>
+          </article>
+
+          <article class="chart">
+            <h3>经营现金流与自由现金流</h3>
+            <p class="unit">单位：人民币亿元；黄线口径用条形表达自由现金流</p>
+            <div class="bars">
+              <div class="bar-row"><span>2021 OCF</span><div class="track"><div class="fill" style="width:17.0%"></div></div><span class="value">2.67</span></div>
+              <div class="bar-row"><span>2021 FCF</span><div class="track"><div class="fill yellow" style="width:6.5%"></div></div><span class="value">1.03</span></div>
+              <div class="bar-row"><span>2023 OCF</span><div class="track"><div class="fill" style="width:100%"></div></div><span class="value">15.73</span></div>
+              <div class="bar-row"><span>2024 FCF</span><div class="track"><div class="fill yellow" style="width:50.5%"></div></div><span class="value">7.95</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>把事实翻译成判断</h2>
+          <p>这部分只写中间判断，不写买卖结论。核心是判断研究框架该怎么看，而不是直接估值。</p>
+        </div>
+        <div class="two-col">
+          <div class="reading-block">
+            <p><strong>第一，古茗不能按直营茶饮股来理解。</strong>直营门店只有 7 家，加盟店贡献约 99.9% GMV。研究重点应放在加盟复制质量和总部能力，而不是直营店租金人工模型。</p>
+            <p><strong>第二，加盟体系不是单纯冲量。</strong>成熟加盟商平均经营 2.9 家门店，71% 经营两家或以上；现有加盟店店效高于新开加盟店，说明成熟门店有沉淀。</p>
+            <p><strong>第三，2024 年压力已经出现。</strong>同店 GMV 转负，新开店放缓，闭店增加，销售费用率上升。这些会影响估值斜率，必须持续跟踪。</p>
+          </div>
+          <table class="evidence-table">
+            <thead>
+              <tr>
+                <th>观察点</th>
+                <th>数据</th>
+                <th>解释</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>加盟主导</td>
+                <td>加盟 GMV 约 99.9%</td>
+                <td>总部模型优先于直营模型</td>
+              </tr>
+              <tr>
+                <td>成熟加盟商</td>
+                <td>平均 2.9 店，71% 多店</td>
+                <td>加盟商有复购式开店迹象</td>
+              </tr>
+              <tr>
+                <td>经营承压</td>
+                <td>同店 GMV -0.7%</td>
+                <td>竞争压力已经传导到老店</td>
+              </tr>
+              <tr>
+                <td>现金质量</td>
+                <td>2024 前三季度 FCF 7.95 亿元</td>
+                <td>仍不是靠融资维持扩张</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="risks">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>风险和反证</h2>
+          <p>这页最值得朋友看的不是“古茗一定好”，而是哪些数据会推翻当前中间判断。</p>
+        </div>
+        <div class="warn">
+          <div class="risk">
+            <b>同店继续恶化</b>
+            <p>如果同店 GMV 下滑扩大，说明老店质量受损，加盟体系的真实质量需要重估。</p>
+          </div>
+          <div class="risk">
+            <b>新店复制变差</b>
+            <p>如果新开加盟店店效持续下行，同时闭店继续增加，扩张逻辑会从成长变成消耗。</p>
+          </div>
+          <div class="risk">
+            <b>成本拆分不足</b>
+            <p>原材料和严格履约费用率还不够清楚，供应链护城河不能只靠描述判断。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="appendix">
+      <div class="wrap">
+        <div class="section-title">
+          <h2>附录和来源</h2>
+          <p>完整 11 问和结构化底稿保留在 Markdown 文件里，网页只负责给朋友快速读懂。</p>
+        </div>
+        <div class="appendix">
+          <div>
+            <ul class="source-list">
+              <li>完整 11 问：<a href="./guming_consumer_chain_share_20260429.md">guming_consumer_chain_share_20260429.md</a></li>
+              <li>研究底稿：<a href="./guming_consumer_chain_draft_20260429.md">guming_consumer_chain_draft_20260429.md</a></li>
+              <li>核心招股书：P16, P21, P28, P174, P184, P186, P189, P321, P373</li>
+              <li>本页不是买卖建议，只是基于招股书和结构化字段形成的研究框架。</li>
+            </ul>
+          </div>
+          <aside class="aside">
+            下一步最该补的三个数据点：加盟商 ROI 与回收期、原材料和履约费用率、与蜜雪/茶百道/沪上阿姨的同店和费用率对比。
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      生成日期：2026-04-29 · 研究对象：古茗 1364.HK · 页面版本：share v1
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">分享信息已复制</div>
+
+  <script>
+    const shareBtn = document.getElementById('shareBtn');
+    const toast = document.getElementById('toast');
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      window.setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    shareBtn.addEventListener('click', async () => {
+      const text = [
+        '古茗研究笔记：古茗不是直营茶饮股，而是加盟供应链公司。',
+        '核心看点：加盟 GMV 约 99.9%，直营店仅 7 家，成熟加盟商平均 2.9 店，同店 GMV 在 2024 前三季度转负。',
+        window.location.href
+      ].join('\n');
+
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, text, url: window.location.href });
+          return;
+        }
+        await navigator.clipboard.writeText(text);
+        showToast('分享信息已复制');
+      } catch (error) {
+        showToast('浏览器未允许分享，可直接复制地址栏链接');
+      }
+    });
+  </script>
+</body>
+</html>
