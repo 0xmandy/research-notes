@@ -1,0 +1,959 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>油运周期：VLCC、Sinokor 与黑船供给</title>
+  <meta name="description" content="一页看懂油运周期：TCE 运价、有效 VLCC 供给、Sinokor 市占率、伊朗黑船制裁漏斗与船型差异。">
+  <style>
+    :root {
+      color-scheme: light;
+      --paper: #f7f8f3;
+      --ink: #18211f;
+      --muted: #64716d;
+      --line: #d8ded8;
+      --panel: #ffffff;
+      --wash: #edf2ee;
+      --deep: #123f3b;
+      --teal: #1b7a75;
+      --blue: #2d6388;
+      --red: #b74d3c;
+      --amber: #c1862c;
+      --green: #2d7c4f;
+      --shadow: 0 18px 48px rgba(24, 33, 31, 0.08);
+      --sans: "Hiragino Sans GB", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      --serif: "Songti SC", "Noto Serif CJK SC", "Source Han Serif SC", serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(135deg, rgba(27, 122, 117, 0.10), transparent 34%),
+        linear-gradient(225deg, rgba(183, 77, 60, 0.08), transparent 32%),
+        var(--paper);
+      font-family: var(--sans);
+      line-height: 1.68;
+    }
+
+    a {
+      color: var(--deep);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(18, 63, 59, 0.25);
+    }
+    a:hover { border-bottom-color: var(--deep); }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      border-bottom: 1px solid rgba(216, 222, 216, 0.9);
+      background: rgba(247, 248, 243, 0.9);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+      font-weight: 800;
+      color: var(--deep);
+    }
+    .mark {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      background:
+        linear-gradient(145deg, var(--teal), var(--deep)),
+        var(--teal);
+      flex: 0 0 auto;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.34);
+    }
+    .nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      white-space: nowrap;
+      overflow-x: auto;
+      font-size: 13px;
+    }
+    .nav a {
+      color: var(--muted);
+      border-bottom: none;
+    }
+
+    .hero {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 58px 22px 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.08fr) minmax(360px, 0.92fr);
+      gap: 42px;
+      align-items: end;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+      color: var(--teal);
+      font-weight: 800;
+      font-size: 14px;
+    }
+    .eyebrow::before {
+      content: "";
+      width: 30px;
+      height: 2px;
+      background: var(--teal);
+    }
+    h1 {
+      margin: 0;
+      max-width: 780px;
+      font-family: var(--serif);
+      font-size: clamp(38px, 6.2vw, 82px);
+      line-height: 1.04;
+      letter-spacing: 0;
+    }
+    .hero-copy {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: #34423f;
+      font-size: 18px;
+    }
+    .hero-note {
+      margin-top: 18px;
+      padding-left: 14px;
+      border-left: 4px solid var(--red);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .equation {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.88);
+      box-shadow: var(--shadow);
+      padding: 20px;
+    }
+    .equation-title {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .equation-main {
+      margin: 14px 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      font-weight: 900;
+    }
+    .eq-box {
+      min-height: 78px;
+      border: 1px solid rgba(27, 122, 117, 0.22);
+      border-radius: 8px;
+      background: #f5fbf8;
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .eq-box strong {
+      font-size: 18px;
+      color: var(--deep);
+      line-height: 1.2;
+    }
+    .eq-box span {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .eq-op {
+      color: var(--red);
+      font-size: 24px;
+      font-weight: 900;
+    }
+    .equation-foot {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .section {
+      padding: 48px 22px;
+    }
+    .section.alt {
+      background: rgba(237, 242, 238, 0.72);
+      border-top: 1px solid rgba(216, 222, 216, 0.82);
+      border-bottom: 1px solid rgba(216, 222, 216, 0.82);
+    }
+    .wrap {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+    .section-head {
+      display: grid;
+      grid-template-columns: minmax(0, 0.82fr) minmax(280px, 0.48fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+    h2 {
+      margin: 0;
+      font-family: var(--serif);
+      font-size: clamp(29px, 4vw, 48px);
+      line-height: 1.12;
+    }
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      gap: 16px;
+    }
+    .grid.metrics {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+    .grid.two {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+    .grid.three {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      min-width: 0;
+    }
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      line-height: 1.25;
+    }
+    .card p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .number {
+      display: block;
+      margin: 8px 0 6px;
+      font-family: var(--serif);
+      font-size: clamp(32px, 5vw, 56px);
+      line-height: 1;
+      font-weight: 900;
+      color: var(--deep);
+    }
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      border: 1px solid rgba(27, 122, 117, 0.22);
+      border-radius: 999px;
+      padding: 2px 9px;
+      background: #eef8f5;
+      color: var(--teal);
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .tag.warn {
+      border-color: rgba(183, 77, 60, 0.28);
+      background: #fff1ee;
+      color: var(--red);
+    }
+
+    .source {
+      display: block;
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .source a {
+      color: var(--deep);
+    }
+
+    .bars {
+      display: grid;
+      gap: 13px;
+      margin-top: 12px;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 130px minmax(0, 1fr) 92px;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+    .track {
+      height: 18px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: #e3e9e5;
+    }
+    .fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--teal), var(--deep));
+    }
+    .fill.red {
+      background: linear-gradient(90deg, var(--red), #7f3028);
+    }
+    .fill.amber {
+      background: linear-gradient(90deg, var(--amber), #9c681a);
+    }
+
+    .bridge {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+      align-items: stretch;
+    }
+    .bridge-step {
+      position: relative;
+      min-height: 150px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 15px;
+      background: #fff;
+    }
+    .bridge-step::after {
+      content: "→";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-weight: 900;
+    }
+    .bridge-step:last-child::after { content: ""; }
+    .bridge-step strong {
+      display: block;
+      font-family: var(--serif);
+      font-size: 30px;
+      line-height: 1;
+      color: var(--deep);
+    }
+    .bridge-step span {
+      display: block;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .matrix {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    table {
+      width: 100%;
+      min-width: 760px;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td {
+      border-bottom: 1px solid var(--line);
+      padding: 12px 14px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #f1f5f2;
+      color: var(--deep);
+      font-weight: 900;
+    }
+    tr:last-child td { border-bottom: 0; }
+    td small {
+      color: var(--muted);
+    }
+
+    .fleet-rows {
+      display: grid;
+      gap: 16px;
+    }
+    .fleet-row {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 16px;
+    }
+    .fleet-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 10px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .ships {
+      display: grid;
+      grid-template-columns: repeat(25, minmax(8px, 1fr));
+      gap: 4px;
+    }
+    .ship {
+      height: 12px;
+      border-radius: 2px;
+      background: #d9e1dc;
+    }
+    .ship.hot { background: var(--teal); }
+    .ship.grey { background: #9aa6a1; }
+    .ship.dark { background: #25312e; }
+
+    .funnel {
+      display: grid;
+      gap: 10px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .funnel-step {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr);
+      gap: 14px;
+      align-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 13px 16px;
+    }
+    .funnel-step strong {
+      color: var(--deep);
+      font-size: 15px;
+    }
+    .funnel-step span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+    .event {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 15px;
+      align-items: start;
+      border-left: 3px solid var(--teal);
+      padding-left: 14px;
+    }
+    .event time {
+      color: var(--deep);
+      font-weight: 900;
+      font-size: 13px;
+    }
+    .event p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .risk-list {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .risk {
+      border: 1px solid rgba(183, 77, 60, 0.22);
+      border-radius: 8px;
+      background: #fff7f4;
+      padding: 14px;
+    }
+    .risk strong {
+      display: block;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+    .risk span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .footnotes {
+      columns: 2 320px;
+      column-gap: 34px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+    .footnotes p {
+      break-inside: avoid;
+      margin: 0 0 10px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .section-head,
+      .grid.metrics,
+      .grid.two,
+      .grid.three,
+      .bridge,
+      .risk-list {
+        grid-template-columns: 1fr;
+      }
+      .bridge-step::after { content: ""; }
+      .equation-main {
+        grid-template-columns: 1fr;
+      }
+      .eq-op {
+        text-align: center;
+        line-height: 1;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .topbar-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      .hero {
+        padding-top: 38px;
+      }
+      .bar-row {
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      .funnel-step,
+      .event {
+        grid-template-columns: 1fr;
+      }
+      .ships {
+        grid-template-columns: repeat(20, minmax(8px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand"><span class="mark"></span><span>油运周期研究</span></div>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#formula">公式</a>
+        <a href="#dashboard">指标</a>
+        <a href="#supply">有效供给</a>
+        <a href="#sinokor">Sinokor</a>
+        <a href="#shadow">黑船</a>
+        <a href="#segments">船型</a>
+        <a href="#audit">出处</a>
+        <a href="#sources">来源</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="formula">
+      <div>
+        <div class="eyebrow">VLCC / 原油轮 / 成品油轮</div>
+        <h1>油运不是看油价，而是看有效船够不够用。</h1>
+        <p class="hero-copy">
+          当前油轮处于高景气、强波动、供给约束仍在但中期订单风险上升的阶段。理解本轮周期，要把货量、航距、合规有效运力、Sinokor 控船和伊朗黑船放在同一张图里。
+        </p>
+        <div class="hero-note">数据优先采用 Tankers International、OFAC、公司公告、IEA/EIA、Signal/Argus 等可点击核对的来源；雪球/东方财富转载仅作为线索和叙事参考。</div>
+        <div class="hero-note">阅读顺序：先看公式和四张指标卡，再看有效供给、Sinokor 和黑船漏斗，最后用船型/公司映射和证伪清单检查自己的判断。</div>
+      </div>
+      <aside class="equation" aria-label="油运解释公式">
+        <div class="equation-title">研究框架</div>
+        <div class="equation-main">
+          <div class="eq-box"><strong>要运多少油</strong><span>OPEC、中东、美洲、俄油/伊朗油、补库存</span></div>
+          <div class="eq-op">×</div>
+          <div class="eq-box"><strong>运多远</strong><span>吨海里、绕航、替代来源、红海/霍尔木兹</span></div>
+          <div class="eq-op">÷</div>
+          <div class="eq-box"><strong>有多少船能干活</strong><span>合规船、老龄折减、黑船隔离、坞修、控船</span></div>
+        </div>
+        <div class="equation-foot">公式是本研究的解释框架。事实数字使用原始出处，不引用攒股吃橘子的观点。</div>
+      </aside>
+    </section>
+
+    <section class="section alt" id="dashboard">
+      <div class="wrap">
+        <div class="section-head">
+          <div>
+            <h2>先看四个核心读数</h2>
+          </div>
+          <p>运价、有效供给、控船集中度和黑船状态，是本轮油运研究最应优先跟踪的四个信号。</p>
+        </div>
+        <div class="grid metrics">
+          <article class="card">
+            <span class="tag warn">风险峰值</span>
+            <span class="number">&gt;$600k</span>
+            <h3>TD3C 极端 TCE</h3>
+            <p>Tankers International 复盘称 2026 年 3 月 TD3C 超过 WS600，对应 earnings 超过 60 万美元/天，但含战争风险溢价和失败 fixture 风险。</p>
+            <span class="source"><a href="https://tankersinternational.com/2026/04/09/historic-shockwaves-through-the-vlcc-market/">Tankers International</a></span>
+          </article>
+          <article class="card">
+            <span class="tag">机构口径</span>
+            <span class="number">23%</span>
+            <h3>VLCC 离开正常市场</h3>
+            <p>约 100 艘已被官方制裁，另约 100 艘近年运过制裁货且不太可能回正常贸易，合计约 23% 全球 VLCC。</p>
+            <span class="source"><a href="https://tankersinternational.com/2026/01/07/2025-market-review-and-outlook-for-2026/">Tankers International</a></span>
+          </article>
+          <article class="card">
+            <span class="tag">多口径</span>
+            <span class="number">12-25%</span>
+            <h3>Sinokor 控制份额</h3>
+            <p>全球总船队约 12%-13%，主流/合规船队约 16%-25%，现货交易船队约 24%。口径必须分开显示。</p>
+            <span class="source"><a href="https://www.thesignalgroup.com/newsroom/market-insights-a-new-vlcc-leader---inside-sinokors-market-rise">Signal</a> · <a href="https://www.argusmedia.com/news-and-insights/latest-market-news/2790716-sinokor-becomes-largest-vlcc-owner">Argus</a></span>
+          </article>
+          <article class="card">
+            <span class="tag">官方事实</span>
+            <span class="number">19</span>
+            <h3>4 月 OFAC shadow fleet 船</h3>
+            <p>OFAC 2026-04-24 制裁 19 艘 shadow fleet vessels，黑船漏斗应跟踪“制裁后是否仍运行”。</p>
+            <span class="source"><a href="https://home.treasury.gov/news/press-releases/sb0472">U.S. Treasury</a></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="rates">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>TCE：极端峰值和公司均值要分开看</h2></div>
+          <p>战争风险峰值能解释市场紧张程度，但不能直接等同于季度盈利。公司季报 TCE 更平滑，fixture 报价更敏感。</p>
+        </div>
+        <div class="grid two">
+          <article class="card">
+            <h3>VLCC TCE 对照</h3>
+            <div class="bars" aria-label="VLCC TCE 条形图">
+              <div class="bar-row"><span>Frontline 2025Q4</span><div class="track"><div class="fill" style="width: 25%"></div></div><strong>$74.2k/d</strong></div>
+              <div class="bar-row"><span>Frontline 2026Q1 锁定</span><div class="track"><div class="fill" style="width: 36%"></div></div><strong>$107.1k/d</strong></div>
+              <div class="bar-row"><span>TI 2026-03 峰值</span><div class="track"><div class="fill red" style="width: 100%"></div></div><strong>&gt;$600k/d</strong></div>
+            </div>
+            <p>图中第三项是风险溢价峰值，不能按全年化盈利外推。</p>
+            <span class="source"><a href="https://live.euronext.com/en/products/equities/company-news/2026-02-27-fro-fourth-quarter-and-full-year-2025-results">Frontline</a> · <a href="https://tankersinternational.com/2026/04/09/historic-shockwaves-through-the-vlcc-market/">Tankers International</a></span>
+          </article>
+          <article class="card">
+            <h3>货流错位是运价放大的原因</h3>
+            <div class="timeline">
+              <div class="event"><time>红海</time><p>Red Sea compliant monthly liftings 从平均 17 增至 2026-03 的 50，2026-04 已预订超过 40。</p></div>
+              <div class="event"><time>美湾</time><p>美湾至远东 freight 数日内上涨超过 600 万美元，美湾 2026-04 VLCC liftings 已预订 40 个，基线为 27 个/月。</p></div>
+              <div class="event"><time>印度</time><p>2026-01 印度 mainstream VLCC liftings 比 2025 月均增加 16 个，增幅 67%，指向从受制裁俄油转向主流来源。</p></div>
+            </div>
+            <span class="source"><a href="https://tankersinternational.com/2026/04/09/historic-shockwaves-through-the-vlcc-market/">Tankers International: shockwaves</a> · <a href="https://tankersinternational.com/2026/02/11/data-spotlight-indias-vlcc-import-pattern-is-showing-a-shift/">India import shift</a></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="audit">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>事实和判断分开看</h2></div>
+          <p>页面上的数字分三类：官方/机构事实、机构口径、研究判断。越接近投资结论，越需要回到原始出处。</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <span class="tag">事实</span>
+            <h3>能直接核对的数字</h3>
+            <p>例如 Frontline TCE、OFAC 船名、Tankers International liftings、招商轮船/中远海能/招商南油一季报利润。</p>
+            <p>这些数字进入网页主体，并附原始链接。</p>
+          </article>
+          <article class="card">
+            <span class="tag">机构口径</span>
+            <h3>需要解释分母</h3>
+            <p>例如 Sinokor 市占率、有效 VLCC 供给、老龄船等效运力。不同机构口径不同，网页同时展示分母。</p>
+            <p>这类数字不合并成单点结论。</p>
+          </article>
+          <article class="card">
+            <span class="tag warn">研究判断</span>
+            <h3>可以被证伪</h3>
+            <p>例如“当前是高景气中后段”“制裁不等于退出”“股票先看暴露再估值”。这些是基于事实的判断。</p>
+            <p>证伪条件放在最后一屏。</p>
+          </article>
+        </div>
+
+        <div class="matrix" style="margin-top:18px">
+          <table>
+            <thead>
+              <tr>
+                <th>页面数字</th>
+                <th>页面怎么用</th>
+                <th>出处</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>TD3C 超 WS600，earnings 超 $600k/day</td>
+                <td>作为风险溢价峰值，不等同季度盈利。</td>
+                <td><a href="https://tankersinternational.com/2026/04/09/historic-shockwaves-through-the-vlcc-market/">Tankers International</a></td>
+              </tr>
+              <tr>
+                <td>Frontline 2025Q4 VLCC TCE $74.2k/day；2026Q1 锁定 $107.1k/day</td>
+                <td>作为公司实际盈利能力锚点。</td>
+                <td><a href="https://live.euronext.com/en/products/equities/company-news/2026-02-27-fro-fourth-quarter-and-full-year-2025-results">Frontline Q4 2025 Results</a></td>
+              </tr>
+              <tr>
+                <td>约 100 艘 VLCC 官方制裁，另约 100 艘近年运过制裁货</td>
+                <td>用于有效供给桥图。</td>
+                <td><a href="https://tankersinternational.com/2026/01/07/2025-market-review-and-outlook-for-2026/">Tankers International 2026 outlook</a></td>
+              </tr>
+              <tr>
+                <td>Sinokor 全球 12%-13%，主流/合规 16%-25%，现货交易约 24%</td>
+                <td>用三口径展示，不给单一市占率。</td>
+                <td><a href="https://www.thesignalgroup.com/newsroom/market-insights-a-new-vlcc-leader---inside-sinokors-market-rise">Signal</a> · <a href="https://www.argusmedia.com/news-and-insights/latest-market-news/2790716-sinokor-becomes-largest-vlcc-owner">Argus</a> · <a href="https://www.rivieramm.com/news-content-hub/sinokor-emerges-as-super-vlcc-operator-with-16-market-share-87734">Riviera/BRS</a></td>
+              </tr>
+              <tr>
+                <td>OFAC 2026-04-24 制裁 19 艘 shadow fleet vessels</td>
+                <td>进入黑船漏斗的官方制裁层。</td>
+                <td><a href="https://home.treasury.gov/news/press-releases/sb0472">U.S. Treasury / OFAC</a></td>
+              </tr>
+              <tr>
+                <td>招商轮船、中远海能、招商南油 2026Q1 净利润高增</td>
+                <td>用于公司映射，不直接推估估值。</td>
+                <td><a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12199299&stockid=601872">招商轮船</a> · <a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12215421&stockid=600026">中远海能</a> · <a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12214799&stockid=601975">招商南油</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="supply">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>真正重要的是“有效 VLCC 供给”</h2></div>
+          <p>名义船队不是可用船队。制裁船、曾运制裁货的船、20 年以上老船，都不能按一条现代合规船等价处理。</p>
+        </div>
+        <div class="bridge" aria-label="有效供给桥图">
+          <div class="bridge-step"><strong>总船队</strong><span>全球 VLCC 基础池。Argus 提到全球约 880 艘 VLCC，但并非都能进入主流市场。</span></div>
+          <div class="bridge-step"><strong>-100</strong><span>约 100 艘 VLCC 已被官方制裁。</span></div>
+          <div class="bridge-step"><strong>-100</strong><span>另约 100 艘近年运过制裁货，TI 认为不太可能回正常贸易。</span></div>
+          <div class="bridge-step"><strong>20%+</strong><span>全球 VLCC 近 20% 船龄 20 年以上，老船利用率和主流接受度下降。</span></div>
+          <div class="bridge-step"><strong>&lt;3%</strong><span>2026 年计划交付 40 艘，但有效船队增长低于 3%。</span></div>
+        </div>
+        <div class="grid two" style="margin-top:16px">
+          <article class="card">
+            <h3>老龄船要折成等效运力</h3>
+            <p>Tankers International 称 18-25 年船龄 VLCC 每年损失约 10% 利用率；不参与制裁贸易的老船，到 20 年船龄时主流租家接受度接近归零。</p>
+            <p>过去 5 年名义 VLCC 船队增加 100+ 艘，但有效容量只增加约 60 艘等效船；未来 3 年名义容量约增 8%，有效容量约增 1%。</p>
+            <span class="source"><a href="https://tankersinternational.com/2025/04/15/how-an-ageing-vlcc-fleet-is-reshaping-market-dynamics/">Tankers International: ageing fleet</a></span>
+          </article>
+          <article class="card">
+            <h3>委内瑞拉案例：正常化也未必释放主流船</h3>
+            <p>2025 年委内瑞拉原油出口约 850 kbd；每月约 8 个 VLCC fixtures，大多去中国；约 70 艘独立 VLCC 参与，明显偏 20+ 年老船。</p>
+            <p>这说明制裁油贸易即使变化，也不必然把老龄或有污点船释放回合规主流市场。</p>
+            <span class="source"><a href="https://tankersinternational.com/2026/01/22/what-venezuela-means-for-todays-vlcc-market/">Tankers International: Venezuela</a></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sinokor">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>Sinokor 不能只给一个市占率</h2></div>
+          <p>它的影响力取决于分母：全球总船队、主流/合规船队、还是活跃现货交易船队。网页应同时展示三种口径。</p>
+        </div>
+        <div class="fleet-rows">
+          <div class="fleet-row">
+            <div class="fleet-label"><strong>全球 VLCC 总船队</strong><span>Sinokor 约 12%-13%</span></div>
+            <div class="ships" aria-hidden="true">
+              <span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span>
+              <span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span>
+              <span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span>
+              <span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span>
+            </div>
+          </div>
+          <div class="fleet-row">
+            <div class="fleet-label"><strong>主流/合规 VLCC</strong><span>Sinokor 约 16%-25%</span></div>
+            <div class="ships" aria-hidden="true">
+              <span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span>
+              <span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span>
+              <span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span>
+              <span class="ship grey"></span><span class="ship grey"></span><span class="ship grey"></span><span class="ship grey"></span><span class="ship grey"></span>
+            </div>
+          </div>
+          <div class="fleet-row">
+            <div class="fleet-label"><strong>活跃现货交易 VLCC</strong><span>Sinokor 约 24%</span></div>
+            <div class="ships" aria-hidden="true">
+              <span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span><span class="ship hot"></span>
+              <span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span><span class="ship"></span>
+              <span class="ship grey"></span><span class="ship grey"></span><span class="ship grey"></span><span class="ship grey"></span><span class="ship grey"></span>
+              <span class="ship dark"></span><span class="ship dark"></span><span class="ship dark"></span><span class="ship dark"></span><span class="ship dark"></span>
+            </div>
+          </div>
+        </div>
+        <p class="source">来源：<a href="https://www.thesignalgroup.com/newsroom/market-insights-a-new-vlcc-leader---inside-sinokors-market-rise">Signal Ocean</a>、<a href="https://www.argusmedia.com/news-and-insights/latest-market-news/2790716-sinokor-becomes-largest-vlcc-owner">Argus</a>、<a href="https://www.rivieramm.com/news-content-hub/sinokor-emerges-as-super-vlcc-operator-with-16-market-share-87734">Riviera/BRS</a>、<a href="https://www.portnews.it/en/sinokor-dominates-tanker-market/">PortNews/Fearnleys</a>。灰色表示口径剔除或折减的非主流船，深色表示 shadow/grey fleet。</p>
+      </div>
+    </section>
+
+    <section class="section alt" id="shadow">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>伊朗黑船：制裁不等于退出</h2></div>
+          <p>网页应做“漏斗”，而不是只列名单。真正影响合规运力的是船是否无法保险、无法接主流租家、无法融资或实际停航。</p>
+        </div>
+        <div class="funnel">
+          <div class="funnel-step"><strong>疑似黑船池</strong><span>UANI、Tanker Trackers、Lloyd’s List、AIS/卫星线索。只能作为待核验池。</span></div>
+          <div class="funnel-step"><strong>官方制裁</strong><span>OFAC 2026-04-24 列出 19 艘 shadow fleet vessels：LISBOA、SEVAN、MAGNOLIA、ZHEN ZHU、ANSHUN II 等。</span></div>
+          <div class="funnel-step"><strong>扣押/执法</strong><span>马来西亚 2026-01 扣押两艘涉嫌非法 STS 油轮，涉油超过 RM512m。</span></div>
+          <div class="funnel-step"><strong>释放/仍运行</strong><span>Lloyd’s List 称 Nora、Rcelebra 被释放；是否仍运行要用 AIS/卫星数据继续核验。</span></div>
+          <div class="funnel-step"><strong>退出有效供给</strong><span>只有进入停航、无法投保、无法被主流租家接受，才算减少合规有效供给。</span></div>
+        </div>
+        <div class="grid two" style="margin-top:16px">
+          <article class="card">
+            <h3>第一批观察船名</h3>
+            <p><strong>OFAC 2026-04-24：</strong>LISBOA、SEVAN、LYNN、GLOBAL VIVIAN、MAGNOLIA、SEEKER 8、STELLAR BEVERLY、COVENIO、GOLDEN SUNRISE、ZHEN ZHU、BANGUS、MIRAAN、LIN 9、GALVIN、HH GLORY、ANSHUN II、SMD WORLD、EDOR、BENTLEY。</p>
+            <p><strong>State/OFAC 2026-02-06：</strong>VICSCENE、OCEAN GUARDIAN、AL SAFA、BENLAI、AQUA LIVE、BENEDICT 等。</p>
+            <span class="source"><a href="https://home.treasury.gov/news/press-releases/sb0472">U.S. Treasury</a> · <a href="https://www.iranwatch.org/library/governments/united-states/executive-branch/department-state/sanctions-combat-illicit-traders-iranian-oil-shadow-fleet">Iran Watch</a></span>
+          </article>
+          <article class="card">
+            <h3>需要继续补的数据</h3>
+            <p>每艘船应补：IMO、船型、旗国、制裁日期、黑名单来源、扣押事件、最近 AIS 活动、当前状态和证据链接。</p>
+            <p>状态建议分为：已制裁、已扣押/释放、AIS/卫星仍运行、疑似退出/停航。没有 AIS 证据时不能写“退出”。</p>
+            <span class="source"><a href="https://web11.bernama.com/en/crime_courts/news.php?id=2518997">Bernama/MMEA</a> · <a href="https://www.lloydslist.com/LL1156242/Malaysia-releases-sanctioned-tankers-suspected-of-transferring-Iranian-oil">Lloyd’s List</a></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="segments">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>不要把油运当成一个品种</h2></div>
+          <p>VLCC 是宏观和地缘期权，MR/LR2 更靠成品油贸易、炼厂开工和区域套利。</p>
+        </div>
+        <div class="matrix">
+          <table>
+            <thead>
+              <tr>
+                <th>船型</th>
+                <th>主要货种</th>
+                <th>核心驱动</th>
+                <th>领先指标</th>
+                <th>公司映射</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>VLCC</strong></td>
+                <td>原油，超长航线</td>
+                <td>中东/美湾/巴西到亚洲、霍尔木兹、Sinokor、黑船替代</td>
+                <td>TD3C、MEG/China fixtures、合规有效供给</td>
+                <td>招商轮船、中远海能、Frontline、DHT</td>
+              </tr>
+              <tr>
+                <td><strong>Suezmax</strong></td>
+                <td>原油，中长航线</td>
+                <td>西非、地中海、苏伊士、VLCC 挤出效应</td>
+                <td>Suezmax TCE、西非货盘、红海恢复</td>
+                <td>Frontline 等混合原油轮公司</td>
+              </tr>
+              <tr>
+                <td><strong>Aframax / LR2</strong></td>
+                <td>原油/成品油可切换</td>
+                <td>俄油、地中海、区域贸易、成品油套利</td>
+                <td>Aframax/LR2 TCE、俄油流向、苏伊士路径</td>
+                <td>Scorpio、部分成品油轮公司</td>
+              </tr>
+              <tr>
+                <td><strong>MR</strong></td>
+                <td>成品油，区域贸易</td>
+                <td>炼厂开工、裂解差、东亚/澳洲/东南亚成品油进口</td>
+                <td>MR TCE、成品油库存、炼厂负荷</td>
+                <td>招商南油、Scorpio</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="companies">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>股票映射先看暴露，不急着估值</h2></div>
+          <p>行业景气不等于所有公司弹性一致。先拆船型、现货敞口、船龄、长协和非油运业务。</p>
+        </div>
+        <div class="grid three">
+          <article class="card">
+            <h3>招商轮船</h3>
+            <span class="number">+219%</span>
+            <p>2026Q1 归母净利润 27.63 亿元，同比增长 219.31%。公告称增长主要来自油轮板块受供需结构改善及地缘因素影响、运价中枢上升，同时干散货 BDI 同比大幅上升。</p>
+            <p>含油运、干散货、LNG、滚装等多元业务，不能按纯 VLCC 公司估值。</p>
+            <span class="source"><a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12199299&stockid=601872">招商轮船 2026Q1 报告</a> · <a href="https://www.nbd.com.cn/articles/2026-04-24/4359174.html">每日经济新闻摘要</a></span>
+          </article>
+          <article class="card">
+            <h3>中远海能</h3>
+            <span class="number">+207%</span>
+            <p>2026Q1 归母净利润 21.73 亿元，同比增长 206.74%。公司公告称主要因外贸油运市场保持高位，整体效益上涨。</p>
+            <p>2025 年报摘要显示，公司拥有及控制油轮运力 155 艘、2257.6 万载重吨，油轮船队规模全球排名第一。</p>
+            <span class="source"><a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12215421&stockid=600026">中远海能 2026Q1 报告</a> · <a href="https://finance.sina.com.cn/stock/relnews/cn/2026-03-27/doc-inhskwec8419635.shtml">2025 年报摘要</a></span>
+          </article>
+          <article class="card">
+            <h3>招商南油</h3>
+            <span class="number">+52%</span>
+            <p>2026Q1 归母净利润 4.32 亿元，同比增长 51.73%。公司公告称主要系成品油运输运价同比上升、营业收入增加，以及资产处置收益同比增加。</p>
+            <p>更偏 MR/成品油轮和区域液货运输，不能简单等同 VLCC 现货弹性。</p>
+            <span class="source"><a href="https://money.finance.sina.com.cn/corp/view/vCB_AllBulletinDetail.php?id=12214799&stockid=601975">招商南油 2026Q1 报告</a> · <a href="https://finance.sina.com.cn/roll/2026-04-27/doc-inhvxtqy9082302.shtml?froms=ggmp">财联社摘要</a></span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="risks">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>哪些情况会推翻判断</h2></div>
+          <p>最后一屏必须保留证伪条件，防止页面只讲牛市故事。</p>
+        </div>
+        <div class="risk-list">
+          <div class="risk"><strong>Sinokor 控船能力被高估</strong><span>如果只是资产归属变化，不能影响可交易现货供给，市占率的意义会下降。</span></div>
+          <div class="risk"><strong>黑船仍继续运行</strong><span>如果制裁没有造成停航或主流供给减少，合规船紧张程度会被高估。</span></div>
+          <div class="risk"><strong>地缘快速恢复</strong><span>霍尔木兹、红海、苏伊士风险下降，会压缩风险溢价和绕航需求。</span></div>
+          <div class="risk"><strong>新船交付快于老船退出</strong><span>订单簿和交付节奏若压过老船折减，供给端会转松。</span></div>
+          <div class="risk"><strong>油需下降</strong><span>经济衰退或高油价破坏需求，可能抵消吨海里增长。</span></div>
+          <div class="risk"><strong>股票估值先走完</strong><span>行业继续好，不代表 NAV 溢价后的股票仍有足够回报。</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="sources">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2>引用规则和主要来源</h2></div>
+          <p>页面核心数字均应可点开核对。雪球和转载用于线索和框架，不替代原始数据。</p>
+        </div>
+        <div class="grid three" style="margin-bottom:18px">
+          <article class="card">
+            <h3>下一版：黑船观察表</h3>
+            <p>字段：船名、IMO、船型、旗国、制裁日期、扣押事件、最近 AIS 活动、当前状态、证据链接。</p>
+          </article>
+          <article class="card">
+            <h3>下一版：运价时间序列</h3>
+            <p>字段：日期、航线、WS、TCE、fixture 状态、风险溢价标签、来源。优先接 Tankers International/Baltic/公司季报。</p>
+          </article>
+          <article class="card">
+            <h3>下一版：公司估值面板</h3>
+            <p>字段：船型暴露、现货敞口、现金盈亏平衡、NAV、P/NAV、分红收益率、净债务。</p>
+          </article>
+        </div>
+        <div class="footnotes">
+          <p><strong>A 级事实源：</strong><a href="https://tankersinternational.com/2026/01/07/2025-market-review-and-outlook-for-2026/">Tankers International 2026 outlook</a>、<a href="https://tankersinternational.com/2026/04/09/historic-shockwaves-through-the-vlcc-market/">TI 2026-03 市场复盘</a>、<a href="https://home.treasury.gov/news/press-releases/sb0472">U.S. Treasury / OFAC</a>、<a href="https://live.euronext.com/en/products/equities/company-news/2026-02-27-fro-fourth-quarter-and-full-year-2025-results">Frontline</a>、<a href="https://www.eia.gov/outlooks/steo/report/index.php">EIA</a>、<a href="https://www.iea.org/reports/oil-market-report-april-2026">IEA</a>。</p>
+          <p><strong>B 级机构口径：</strong><a href="https://www.thesignalgroup.com/newsroom/market-insights-a-new-vlcc-leader---inside-sinokors-market-rise">Signal Ocean</a>、<a href="https://www.argusmedia.com/news-and-insights/latest-market-news/2790716-sinokor-becomes-largest-vlcc-owner">Argus</a>、<a href="https://www.rivieramm.com/news-content-hub/sinokor-emerges-as-super-vlcc-operator-with-16-market-share-87734">Riviera/BRS</a>、<a href="https://www.gibsons.co.uk/report/aging-fleet/">Gibson</a>、<a href="https://www.fbjna.com/tankers-push-order-book-to-17-year-high-bimco/">BIMCO 转载</a>。</p>
+          <p><strong>雪球线索：</strong>可引用“卧着吹牛”的事实线索和框架，但页面数字优先链接到原始出处；不引用“攒股吃橘子”的观点。用户自己的雪球正文若后续取得，应纳入叙事对齐，但事实仍需交叉验证。</p>
+          <p><strong>底稿：</strong><a href="oil_tanker_research_draft_20260430.md">查看 Markdown 研究底稿</a>。</p>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
